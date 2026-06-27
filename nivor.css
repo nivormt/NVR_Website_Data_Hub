@@ -150,7 +150,7 @@ a:hover { opacity: 0.8; }
                 box-shadow 0.3s var(--ease-out);
     text-decoration: none;
 }
-.btn-nvr:hover { transform: translateY(-4px); }
+.btn-nvr:hover { transform: scale(1.02); }
 .btn-nvr:active { transform: scale(0.97); }
 
 .btn-nvr--primary { background: var(--brand-burnt-peach); color: white; }

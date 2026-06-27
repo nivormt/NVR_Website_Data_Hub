@@ -32,32 +32,65 @@ const descriptionTextarea = document.getElementById('description');
 const successOverlay = document.getElementById('successOverlay');
 const successCloseBtn = document.getElementById('successCloseBtn');
 
-// Comments Count Toggle Elements
+// Comments & Replies Toggle Elements
 const commentsCheckbox = document.getElementById('comments');
-const commentsCountContainer = document.getElementById('commentsCountContainer');
+const commentsSubSection = document.getElementById('commentsSubSection');
 const commentsCountSelect = document.getElementById('commentsCount');
 
-if (commentsCheckbox && commentsCountContainer && commentsCountSelect) {
+const repliesCheckbox = document.getElementById('replies');
+const repliesCountSelect = document.getElementById('repliesCount');
+
+if (commentsCheckbox && commentsSubSection && commentsCountSelect && repliesCountSelect) {
     commentsCheckbox.addEventListener('change', function() {
         if (this.checked) {
-            commentsCountContainer.style.display = 'flex';
+            commentsSubSection.style.display = 'flex';
             commentsCountSelect.required = true;
             commentsCountSelect.value = "20"; // Default to 20 when shown
+            
+            // Initialize replies count select as disabled (since replies checkbox is unchecked by default)
+            repliesCountSelect.disabled = true;
+            repliesCountSelect.required = false;
+            repliesCountSelect.value = "";
         } else {
-            commentsCountContainer.style.display = 'none';
+            commentsSubSection.style.display = 'none';
             commentsCountSelect.required = false;
-            commentsCountSelect.value = ""; // Clear when hidden
+            repliesCountSelect.required = false;
+            repliesCountSelect.disabled = true;
+            commentsCountSelect.value = ""; // Clear
+            repliesCountSelect.value = ""; // Clear
+            
+            // Reset replies checkbox
+            if (repliesCheckbox) repliesCheckbox.checked = false;
         }
     });
 }
 
-// Reset listener to return comments count block to default hidden state
+if (repliesCheckbox && repliesCountSelect) {
+    repliesCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            repliesCountSelect.disabled = false;
+            repliesCountSelect.required = true;
+            repliesCountSelect.value = "1"; // Default to 1 when checked
+        } else {
+            repliesCountSelect.disabled = true;
+            repliesCountSelect.required = false;
+            repliesCountSelect.value = ""; // Clear
+        }
+    });
+}
+
+// Reset listener to return comments and replies blocks to default hidden state
 if (form) {
     form.addEventListener('reset', () => {
-        if (commentsCountContainer) commentsCountContainer.style.display = 'none';
+        if (commentsSubSection) commentsSubSection.style.display = 'none';
         if (commentsCountSelect) {
             commentsCountSelect.required = false;
             commentsCountSelect.value = "";
+        }
+        if (repliesCountSelect) {
+            repliesCountSelect.required = false;
+            repliesCountSelect.disabled = true;
+            repliesCountSelect.value = "";
         }
     });
 }
@@ -139,6 +172,8 @@ if (form) {
             metadata: document.getElementById('metadata').checked,
             comments: document.getElementById('comments').checked,
             comments_count: document.getElementById('comments').checked ? (document.getElementById('commentsCount').value || "20") : "",
+            replies: document.getElementById('comments').checked ? document.getElementById('replies').checked : false,
+            replies_count: (document.getElementById('comments').checked && document.getElementById('replies').checked) ? (document.getElementById('repliesCount').value || "1") : "",
             transcript: document.getElementById('transcript').checked
         };
 
