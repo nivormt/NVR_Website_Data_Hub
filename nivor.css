@@ -1,0 +1,265 @@
+/* ============================================
+   NIVOR BRAND SYSTEM — nivor.css
+   Master Brand Tokens & Base Styles
+   Version: 5.0
+   ============================================ */
+
+/* --- 1. DESIGN TOKENS --- */
+:root {
+    /* Primary */
+    --brand-prussian-blue: #1A2238;
+    --brand-burnt-peach: #E67E5D;
+    /* Secondary */
+    --brand-platinum: #F5F6F7;
+    --brand-soft-blush: #F8E0E0;
+    --brand-pale-sky: #F1F9FC;
+    --brand-luxury-mono: #0F1420;
+    --brand-bone-white: #FAF9F6;
+    --surface-white: #FFFFFF;
+    /* Radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 2rem;
+    --radius-full: 9999px;
+    /* Shadows */
+    --shadow-subtle: 0 4px 12px rgba(26, 34, 56, 0.05);
+    --shadow-elevated: 0 20px 40px rgba(26, 34, 56, 0.05);
+    --shadow-floating: 0 40px 80px rgba(26, 34, 56, 0.12);
+    /* Motion */
+    --ease-premium: cubic-bezier(0.25, 0.8, 0.25, 1);
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* --- 2. GLOBAL RESET --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+* { -webkit-tap-highlight-color: transparent; }
+
+body {
+    background-color: var(--brand-platinum);
+    color: var(--brand-prussian-blue);
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- 3. BRAND SELECTION & SCROLLBAR --- */
+::selection {
+    background: rgba(230, 126, 93, 0.2);
+    color: inherit;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--brand-platinum); }
+::-webkit-scrollbar-thumb {
+    background: var(--brand-burnt-peach);
+    border-radius: 10px;
+    border: 2px solid var(--brand-platinum);
+}
+::-webkit-scrollbar-thumb:hover { background: #d46a4a; }
+
+/* --- 4. BASE TYPOGRAPHY --- */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--brand-prussian-blue);
+}
+h2 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--brand-prussian-blue);
+}
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--brand-prussian-blue);
+    opacity: 0.9;
+}
+h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand-burnt-peach);
+}
+p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: var(--brand-prussian-blue);
+    opacity: 0.7;
+}
+small {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    color: var(--brand-prussian-blue);
+    opacity: 0.5;
+}
+a {
+    color: var(--brand-burnt-peach);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.3s var(--ease-premium);
+}
+a:hover { opacity: 0.8; }
+
+/* --- 5. LAYOUT WRAPPER --- */
+.editorial-wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    overflow-x: hidden;
+}
+
+/* --- 6. SECTION TAG --- */
+.section-tag {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--brand-burnt-peach);
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+/* --- 7. BUTTONS --- */
+.btn-nvr {
+    padding: 1.25rem 2.5rem;
+    border-radius: var(--radius-full);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    font-family: 'Manrope', sans-serif;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: transform 0.16s var(--ease-premium),
+                background 0.3s var(--ease-out),
+                box-shadow 0.3s var(--ease-out);
+    text-decoration: none;
+}
+.btn-nvr:hover { transform: translateY(-4px); }
+.btn-nvr:active { transform: scale(0.97); }
+
+.btn-nvr--primary { background: var(--brand-burnt-peach); color: white; }
+.btn-nvr--primary:hover { background: #d46a4a; box-shadow: var(--shadow-elevated); }
+.btn-nvr--secondary { background: var(--brand-prussian-blue); color: white; }
+.btn-nvr--secondary:hover { opacity: 0.95; box-shadow: var(--shadow-elevated); }
+.btn-nvr--outline {
+    border: 2px solid var(--brand-prussian-blue);
+    color: var(--brand-prussian-blue);
+    background: transparent;
+}
+.btn-nvr--outline:hover { background: rgba(26, 34, 56, 0.05); }
+.btn-nvr--glass {
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0,0,0,0.1);
+    color: var(--brand-prussian-blue);
+}
+.btn-nvr--night {
+    background: var(--brand-luxury-mono);
+    color: white;
+    box-shadow: var(--shadow-floating);
+}
+
+/* --- 8. TEXT DECORATIONS --- */
+.nvr-highlight {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+.nvr-highlight::before {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: -4px;
+    right: -4px;
+    height: 12px;
+    background: rgba(230, 126, 93, 0.35);
+    z-index: -1;
+    border-radius: 99px;
+}
+
+/* --- 9. GLASSMORPHISM --- */
+.glass {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 2rem;
+}
+
+/* --- 10. LIGHTBOX --- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 34, 56, 0.95);
+    backdrop-filter: blur(20px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    cursor: zoom-out;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-premium);
+}
+.lightbox.active { display: flex; opacity: 1; }
+.lightbox img {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 1rem;
+    box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: transform 0.5s var(--ease-premium);
+}
+.lightbox.active img { transform: scale(1); }
+
+/* --- 11. SCROLL REVEAL (base state) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* --- 12. RESPONSIVE — Tablet (≤1024px) --- */
+@media (max-width: 1400px) {
+    .editorial-wrapper { padding: 0 2rem; }
+}
+
+@media (max-width: 1024px) {
+    h1 { font-size: 2.75rem; line-height: 1.1; letter-spacing: -0.015em; }
+    h2 { font-size: 2rem; line-height: 1.2; letter-spacing: -0.01em; }
+    h3 { font-size: 1.25rem; }
+    h4 { font-size: 1rem; }
+    p  { font-size: 1.1rem; line-height: 1.55; }
+    small { font-size: 0.7rem; letter-spacing: 0.04em; }
+    .btn-nvr { font-size: 0.8rem; }
+}
+
+/* --- 13. RESPONSIVE — Mobile (≤768px) --- */
+@media (max-width: 768px) {
+    .editorial-wrapper { padding: 0 1.5rem; }
+    h1 { font-size: 2rem; line-height: 1.15; letter-spacing: -0.01em; }
+    h2 { font-size: 1.5rem; line-height: 1.25; letter-spacing: 0; }
+    h3 { font-size: 1.15rem; }
+    h4 { font-size: 0.9rem; letter-spacing: 0.05em; }
+    p  { font-size: 1rem; line-height: 1.5; letter-spacing: 0; }
+    small { font-size: 0.7rem; letter-spacing: 0.02em; }
+    .btn-nvr {
+        width: 100%;
+        justify-content: center;
+        padding: 1.25rem 1.5rem;
+        font-size: 0.8rem;
+    }
+}

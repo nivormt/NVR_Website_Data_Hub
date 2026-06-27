@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIVOR | Adatgyűjtési Központ</title>
+    <!-- External Dependencies -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <!-- NIVOR Brand System -->
+    <link rel="stylesheet" href="nivor.css">
+    <style>
+        /* Page-specific compact layout & background graphics */
+        body {
+            background-color: var(--brand-platinum);
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Digital Mesh Background Pattern */
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(26, 34, 56, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26, 34, 56, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        /* Floating Compact Navbar */
+        .nvr-navbar {
+            position: fixed;
+            top: 1rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            z-index: 100;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.3s var(--ease-premium);
+        }
+
+        .nvr-navbar:hover {
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .nvr-logo-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Content Spacing */
+        .main-content {
+            padding-top: 7rem;
+            padding-bottom: 4rem;
+        }
+
+        /* Compact Hero Section */
+        .hero-section {
+            margin-bottom: 3rem;
+            max-width: 750px;
+        }
+
+        .hero-title {
+            margin-bottom: 1rem;
+            font-size: clamp(2rem, 5vw, 3.25rem);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form Card Grid */
+        .forms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Compact Card Component */
+        .form-card {
+            background: var(--surface-white);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid rgba(26, 34, 56, 0.06);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 240px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s var(--ease-premium), box-shadow 0.3s var(--ease-premium);
+        }
+
+        .form-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .form-card--upcoming {
+            background: rgba(255, 255, 255, 0.45);
+            border: 2px dashed rgba(26, 34, 56, 0.12);
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .form-card--upcoming:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .card-badge {
+            align-self: flex-start;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 0.3rem 0.65rem;
+            border-radius: var(--radius-full);
+            margin-bottom: 1rem;
+        }
+
+        .badge--active {
+            background-color: var(--brand-soft-blush);
+            color: var(--brand-burnt-peach);
+        }
+
+        .badge--planned {
+            background-color: var(--brand-platinum);
+            color: rgba(26, 34, 56, 0.5);
+        }
+
+        .card-title {
+            font-size: 1.45rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--brand-prussian-blue);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.45;
+            color: var(--brand-prussian-blue);
+            opacity: 0.65;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        /* Compact Footer */
+        .nvr-footer {
+            margin-top: 6rem;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(26, 34, 56, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            opacity: 0.7;
+        }
+
+        /* Responsive Overrides */
+        @media (max-width: 768px) {
+            .nvr-navbar {
+                top: 0.75rem;
+                left: 1rem;
+                right: 1rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .main-content {
+                padding-top: 6rem;
+            }
+
+            .forms-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .form-card {
+                padding: 1.5rem;
+                min-height: 220px;
+            }
+
+            .nvr-footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                margin-top: 4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-pattern"></div>
+
+    <!-- Floating Compact Header -->
+    <header class="nvr-navbar glass">
+        <div class="nvr-logo-container" onclick="window.location.reload()">
+            <img src="https://nivor.hu/nvr-content/marka/AB_MT_logoB.png" alt="NIVOR Logo" style="height: 38px; width: auto; display: block;" />
+            <span style="font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 1.6rem; letter-spacing: -0.05em; color: var(--brand-prussian-blue); line-height: 1; margin-left: 0.5rem; user-select: none;">NIVOR</span>
+        </div>
+        <div class="navbar-actions">
+            <span class="btn-nvr btn-nvr--glass" style="padding: 0.6rem 1rem; font-size: 0.7rem; cursor: default;">
+                <i class="bi bi-server"></i> Active Hub
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Editorial Wrapper -->
+    <main class="editorial-wrapper main-content">
+        <!-- Compact Hero Section -->
+        <section class="hero-section reveal" style="opacity: 1; transform: none;">
+            <span class="section-tag" style="margin-bottom: 0.75rem;">DATA HUB</span>
+            <h1 class="hero-title">Adatgyűjtési <span class="nvr-highlight">Központ</span></h1>
+        </section>
+
+        <!-- Forms Cards Grid -->
+        <section class="forms-grid">
+            <!-- Active Card 1: Social Media Form -->
+            <div class="form-card" onclick="window.location.href='social-media-form.html'">
+                <div>
+                    <h3 class="card-title">Social Media Információk</h3>
+                    <p class="card-desc">Webhelyek, közösségi média bejegyzések kategóriáinak, post URL-jeinek,
+                        földrajzi lefedettségének és egyéb paramétereinek rögzítése.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="btn-nvr btn-nvr--primary" style="padding: 0.7rem 1.4rem; font-size: 0.7rem;">
+                        Megnyitás <i class="bi bi-arrow-right-short" style="font-size: 1rem;"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Planned Card 2: Travel Preferences -->
+            <div class="form-card form-card--upcoming">
+                <div>
+                    <span class="card-badge badge--planned">Hamarosan</span>
+                    <h3 class="card-title" style="opacity: 0.65;">Utazási Preferenciák</h3>
+                    <p class="card-desc">Ügyfelek egyéni utazási igényeinek, desztinációs preferenciáinak és szállás
+                        elvárásainak strukturált gyűjtése.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="btn-nvr btn-nvr--outline"
+                        style="padding: 0.7rem 1.4rem; font-size: 0.7rem; cursor: not-allowed; opacity: 0.6; border-color: rgba(26, 34, 56, 0.3);">
+                        Zárolva
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="nvr-footer">
+            <div class="footer-logo">
+                <small>© 2026 NIVOR Premium Travel. Minden jog fenntartva.</small>
+            </div>
+            <div>
+                <small>Utazástervezés új dimenziója.</small>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>
